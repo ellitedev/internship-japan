@@ -8,7 +8,7 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
-          Edit <code>"cock"</code> and save to cum.
+          Edit <code>"app.js"</code> and save to refresh (and cum).
         </p>
         <a
           className="App-link"
