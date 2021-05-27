@@ -21,5 +21,3 @@ jobs:
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_INTERNSHIP_JAPAN_F842C }}'
           channelId: live
           projectId: internship-japan-f842c
-      - name: Firebase Deploy
-        run: firebase deploy
