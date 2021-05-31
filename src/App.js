@@ -1,43 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
 import Button from 'react-bootstrap/Button'
 import firebase from "firebase";
 import "firebase/auth"
 
 export default function App() {
-  return (
-    <div>
-            <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>"app.js"</code> and save to refresh (and cum).
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-        <Button variant="outline-primary">Learn React</Button>{' '}
-        </a>
+    return (
+        <div id="contain">
+            <section id="whenSignedOut">
+                <Button id="signInBtn" variant="outline-primary">Sign In with Google</Button>
+            </section>
 
-        <section id="whenSignedOut">
-          <Button id="signInBtn" variant="outline-primary">Sign In with Google</Button>
-        </section>
-
-        <section id="whenSignedIn" hidden="true">
-          <div id="userDetails"></div>
-          <Button id="signOutBtn" variant="outline-danger">Sign Out</Button>
-        </section>
-
-      </header>
-    </div>
-  );
+            <section id="whenSignedIn" hidden="true">
+                <div id="userDetails"></div>
+                <Button id="signOutBtn" variant="outline-danger">Sign Out</Button>
+            </section>
+        </div>
+    );
 }
 
- let isFirebaseAppDefined = false;
-    setInterval(() => {
-      if (!isFirebaseAppDefined) {
+let isFirebaseAppDefined = false;
+setInterval(() => {
+    if (! isFirebaseAppDefined) {
         if (firebase.app()) {
             const auth = firebase.auth();
             const whenSignedIn = document.getElementById('whenSignedIn');
@@ -54,20 +36,19 @@ export default function App() {
             signOutBtn.onclick = () => auth.signOut();
 
             auth.onAuthStateChanged(user => {
-              if (user) {
-              // signed in
-                whenSignedIn.hidden = false;
-                whenSignedOut.hidden = true;
-                userDetails.innerHTML = `<h3>Hello ${user.displayName}!</h3> <p>User ID: ${user.uid}</p>`;
-              } else {
+                if (user) { // signed in
+                    whenSignedIn.hidden = false;
+                    whenSignedOut.hidden = true;
+                    userDetails.innerHTML = `<h3>Hello <code><i>${user.displayName}</i></code>!</h3> User ID: <code>${user.uid}</code>`;
+                } else {
                     whenSignedIn.hidden = true;
-                whenSignedOut.hidden = false;
-                userDetails.innerHTML = '';
-            }
+                    whenSignedOut.hidden = false;
+                    userDetails.innerHTML = '';
+                }
             });
-          isFirebaseAppDefined = true;
+            isFirebaseAppDefined = true;
         }
-      }
-    }, 100);
+    }
+}, 100);
 
 console.log(firebase)
