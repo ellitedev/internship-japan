@@ -22,7 +22,6 @@ import "firebase/firestore";
   };
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
-  firebase.analytics();
 
 ReactDOM.render(
   <React.StrictMode>
