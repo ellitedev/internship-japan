@@ -5,13 +5,10 @@ import "firebase/auth"
 import {
     BrowserRouter as Router,
     Switch,
-    Route,
-    Link,
-    NavLink
+    Route
 } from "react-router-dom";
 import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
-import NavItem from 'react-bootstrap/NavItem'
 import {LinkContainer} from "react-router-bootstrap";
 import Logo from './logo.svg'
 
