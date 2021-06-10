@@ -53,7 +53,7 @@ export default function App() {
                         </Button>
                     </LinkContainer>
 
-                    <Button id="signOutBtn" variant="outline-danger">Sign Out</Button>
+                    <LinkContainer to="/"><Button id="signOutBtn" variant="outline-danger">Sign Out</Button></LinkContainer>
                 </section>
             </Navbar>
             {/* A <Switch> looks through its children <Route>s and renders the first one that matches the current URL. */}
