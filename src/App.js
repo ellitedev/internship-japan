@@ -21,14 +21,14 @@ export default function App() {
                     <Home/>
                 </Route>
 
-                <Route path="/about">
+                <Route exact path="/about">
                     <About/>
                 </Route>
-                <Route path="/details">
-                
+                <Route exact path="/details">
+
                 </Route>
-                <Route path="/users">
-                
+                <Route exact path="/users">
+                    
                 </Route>
             </Switch>
         </div>
