@@ -2,24 +2,34 @@ import React from "react";
 import Button from 'react-bootstrap/Button'
 import firebase from "firebase";
 import "firebase/auth"
-import {BrowserRouter as Router, Switch, Route, Link, NavLink} from "react-router-dom";
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Link,
+    NavLink
+} from "react-router-dom";
 import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
 import NavItem from 'react-bootstrap/NavItem'
-import { LinkContainer } from "react-router-bootstrap";
+import {LinkContainer} from "react-router-bootstrap";
 import Logo from './logo.svg'
 
 
 export default function App() {
     return (<Router>
         <div>
-            <Navbar variant="light" bg="light" >
+            <Navbar variant="light" bg="light">
 
-                    <LinkContainer to="/">
-                        <Navbar.Brand>
-                        <img src={Logo} width = "30" height = "30" className="d-inline-block align-top" alt="logo"/>
-                        </Navbar.Brand >
-                    </LinkContainer>
+                <LinkContainer to="/">
+                    <Navbar.Brand>
+                        <img src={Logo}
+                            width="30"
+                            height="30"
+                            className="d-inline-block align-top"
+                            alt="logo"/>
+                    </Navbar.Brand>
+                </LinkContainer>
                 <Nav className="mr-auto">
 
 
@@ -30,19 +40,24 @@ export default function App() {
                     <LinkContainer to="/about">
                         <Nav.Link>About</Nav.Link>
                     </LinkContainer>
-                        
+
                     <LinkContainer to="/users">
                         <Nav.Link>Users</Nav.Link>
                     </LinkContainer>
-                    
+
                 </Nav>
-                    <section id="whenSignedOut">
-                        <Button variant="outline-primary" id="signInBtn">Sign In</Button>
-                    </section>
+                <section id="whenSignedOut">
+                    <Button variant="outline-primary" id="signInBtn">Sign In</Button>
+                </section>
                 <section id="whenSignedIn" hidden="true">
-                    <LinkContainer to="/details"><Button variant="outline-primary" class-name="mr-sm-2">Details</Button></LinkContainer>
+                    <LinkContainer to="/details">
+                        <Button variant="outline-primary" class-name="mr-sm-2">
+                            <div id="userDetails"></div>
+                        </Button>
+                    </LinkContainer>
+
                     <Button id="signOutBtn" variant="outline-danger">Sign Out</Button>
-                    </section>
+                </section>
             </Navbar>
             {/* A <Switch> looks through its children <Route>s and renders the first one that matches the current URL. */}
             <Switch>
@@ -96,8 +111,6 @@ function Details() {
 }
 
 
-
-
 let isFirebaseAppDefined = false;
 setInterval(() => {
     if (! isFirebaseAppDefined) {
@@ -120,7 +133,9 @@ setInterval(() => {
                 if (user) { // signed in
                     whenSignedIn.hidden = false;
                     whenSignedOut.hidden = true;
-                    userDetails.innerHTML = userDetails.innerHTML =`<h3>Hello ${user.displayName}!</h3> <p>User ID: ${user.uid}</p>`;
+                    userDetails.innerHTML = userDetails.innerHTML = `Hello ${
+                        user.displayName
+                    }!`;
                 } else {
                     whenSignedIn.hidden = true;
                     whenSignedOut.hidden = false;
