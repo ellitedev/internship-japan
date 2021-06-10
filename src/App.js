@@ -36,20 +36,21 @@ export default function App() {
                     </LinkContainer>
                     
                 </Nav>
-                <LinkContainer to="/log-in" >
-                    <Button variant="outline-success" className="mr-sm-2">Log In</Button>
-                </LinkContainer>
-                <LinkContainer to="/sign-up" >
-                    <Button variant="outline-success">Sign Up</Button>
-                </LinkContainer>
+                    <section id="whenSignedOut">
+                        <Button variant="outline-primary" id="signInBtn">Sign In</Button>
+                    </section>
+                <section id="whenSignedIn" hidden="true">
+                    <LinkContainer to="/details"><Button variant="outline-primary" class-name="mr-sm-2">Details</Button></LinkContainer>
+                    <Button id="signOutBtn" variant="outline-danger">Sign Out</Button>
+                    </section>
             </Navbar>
             {/* A <Switch> looks through its children <Route>s and renders the first one that matches the current URL. */}
             <Switch>
                 <Route path="/about">
                     <About/>
                 </Route>
-                <Route path="/log-in">
-                    <LogIn/>
+                <Route path="/details">
+                    <Details/>
                 </Route>
                 <Route path="/users">
                     <Users/>
@@ -76,6 +77,7 @@ function Home() {
                 <Button variant="outline-primary">Learn React</Button>
                 {' '} </a>
         </header>
+
     </div>;
 
 }
@@ -87,7 +89,46 @@ function About() {
 function Users() {
     return <h2>Users</h2>;
 }
-function LogIn() {
-    return <h2>LOG IN PAGE</h2>;
+function Details() {
+    return <div>
+        <div id="userDetails"></div>
+    </div>;
 }
 
+
+
+
+let isFirebaseAppDefined = false;
+setInterval(() => {
+    if (! isFirebaseAppDefined) {
+        if (firebase.app()) {
+            const auth = firebase.auth();
+            const whenSignedIn = document.getElementById('whenSignedIn');
+            const whenSignedOut = document.getElementById('whenSignedOut');
+
+            const signInBtn = document.getElementById('signInBtn');
+            const signOutBtn = document.getElementById('signOutBtn');
+
+            const userDetails = document.getElementById('userDetails');
+
+            const provider = new firebase.auth.GoogleAuthProvider();
+
+            signInBtn.onclick = () => auth.signInWithPopup(provider);
+            signOutBtn.onclick = () => auth.signOut();
+
+            auth.onAuthStateChanged(user => {
+                if (user) { // signed in
+                    whenSignedIn.hidden = false;
+                    whenSignedOut.hidden = true;
+                    userDetails.innerHTML = userDetails.innerHTML =`<h3>Hello ${user.displayName}!</h3> <p>User ID: ${user.uid}</p>`;
+                } else {
+                    whenSignedIn.hidden = true;
+                    whenSignedOut.hidden = false;
+                }
+            });
+            isFirebaseAppDefined = true;
+        }
+    }
+}, 100);
+
+console.log(firebase)
