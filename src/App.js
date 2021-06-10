@@ -30,7 +30,6 @@ export default function App() {
                 <Route path="/users">
                 
                 </Route>
-
             </Switch>
         </div>
     </Router>);
