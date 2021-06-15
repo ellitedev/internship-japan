@@ -1,10 +1,15 @@
-import { Alert } from 'bootstrap';
 import React from 'react';
 import Button from 'react-bootstrap/Button'
+import Helmet from 'react-helmet'
 
 function Home() {
     return (
-        <div>
+        <div style={{
+            textAlign: "center"
+        }}>
+            <Helmet>
+                <title>Home</title>
+            </Helmet>
             <h1>
                 <i>
                     <b>cock</b>
