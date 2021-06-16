@@ -9,8 +9,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Install Packages
-        run: npm install
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v2.1.5
+      - name: npm/yarn/pnpm install
+        uses: Jaid/action-npm-install@v1.2.4
+      - name: npm update checker
+        uses: MeilCli/npm-update-check-action@v4.0.0
       - name: Build page
         run: npm run build
       - uses: FirebaseExtended/action-hosting-deploy@v0
