@@ -43,7 +43,7 @@ const Navbar1 = (props) => {
         {auth.isLoaded ? (
           <div>{links}</div>
         ) : (
-            <BeatLoader color="white" margin="2"/>
+            <BeatLoader color="white" margin="1vh"/>
         )}
       </Navbar>
     </div>
