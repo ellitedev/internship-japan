@@ -7,6 +7,9 @@ import {
   Card,
   ButtonToolbar,
   Alert,
+  Container,
+  Row,
+  Col,
 } from "react-bootstrap";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
@@ -42,81 +45,125 @@ class SignUp extends Component {
         <Helmet>
           <title>Sign Up</title>
         </Helmet>
-        <Card>
-          <Card.Header as="h3">Sign Up</Card.Header>
-          <Card.Body>
-            <div>
-              {authError ? <Alert variant="danger">{authError}</Alert> : null}
-            </div>
-            <InputGroup className="mb-3">
-              <InputGroup.Prepend>
-                <InputGroup.Text>Name</InputGroup.Text>
-              </InputGroup.Prepend>
-              <FormControl
-                placeholder="First Name"
-                htmlFor="firstName"
-                type="text"
-                id="firstName"
-                onChange={this.handleChange}
-              />
-              <FormControl
-                placeholder="Last Name"
-                htmlFor="lastName"
-                type="text"
-                id="lastName"
-                onChange={this.handleChange}
-              />
-            </InputGroup>
-            <InputGroup className="mb-3">
-              <InputGroup.Prepend>
-                <InputGroup.Text id="inputGroup-sizing-default">
-                  E-mail
-                </InputGroup.Text>
-              </InputGroup.Prepend>
-              <FormControl
-                type="email"
-                id="email"
-                onChange={this.handleChange}
-                placeholder="example@example.com"
-                aria-label="e-mail"
-                aria-describedby="inputGroup-sizing-default"
-              />
-            </InputGroup>
-            <InputGroup className="mb-3">
-              <InputGroup.Prepend>
-                <InputGroup.Text id="inputGroup-sizing-default">
-                  Password
-                </InputGroup.Text>
-              </InputGroup.Prepend>
-              <FormControl
-                type="password"
-                id="password"
-                onChange={this.handleChange}
-                placeholder="superStrongPassword"
-                aria-label="password"
-                aria-describedby="inputGroup-sizing-default"
-              />
-            </InputGroup>
-            <ButtonToolbar>
-              <Button
-                variant="primary"
-                className="mr-2"
-                id="emailSignUp"
-                onClick={this.handleSubmit}
-              >
-                Sign Up
-              </Button>
-              <Button
-                variant="outline-primary"
-                className="mr-2"
-                id="googleSignUp"
-                onClick={this.handleGoogle}
-              >
-                Sign Up with Google
-              </Button>
-            </ButtonToolbar>
-          </Card.Body>
-        </Card>
+        <Container>
+          <Row>
+            <Col>
+              <Card>
+                <Card.Header as="h3">Sign Up</Card.Header>
+                <Card.Body>
+                  <div>
+                    {authError ? (
+                      <Alert variant="danger">{authError}</Alert>
+                    ) : null}
+                  </div>
+                  <InputGroup className="mb-3">
+                    <InputGroup.Prepend>
+                      <InputGroup.Text>Name</InputGroup.Text>
+                    </InputGroup.Prepend>
+                    <FormControl
+                      placeholder="First Name"
+                      htmlFor="firstName"
+                      type="text"
+                      id="firstName"
+                      onChange={this.handleChange}
+                    />
+                    <FormControl
+                      placeholder="Last Name"
+                      htmlFor="lastName"
+                      type="text"
+                      id="lastName"
+                      onChange={this.handleChange}
+                    />
+                  </InputGroup>
+                  <InputGroup className="mb-3">
+                    <InputGroup.Prepend>
+                      <InputGroup.Text id="inputGroup-sizing-default">
+                        E-mail
+                      </InputGroup.Text>
+                    </InputGroup.Prepend>
+                    <FormControl
+                      type="email"
+                      id="email"
+                      onChange={this.handleChange}
+                      placeholder="example@example.com"
+                      aria-label="e-mail"
+                      aria-describedby="inputGroup-sizing-default"
+                    />
+                  </InputGroup>
+                  <InputGroup className="mb-3">
+                    <InputGroup.Prepend>
+                      <InputGroup.Text id="inputGroup-sizing-default">
+                        Password
+                      </InputGroup.Text>
+                    </InputGroup.Prepend>
+                    <FormControl
+                      type="password"
+                      id="password"
+                      onChange={this.handleChange}
+                      placeholder="superStrongPassword"
+                      aria-label="password"
+                      aria-describedby="inputGroup-sizing-default"
+                    />
+                  </InputGroup>
+                  <Button
+                    variant="primary"
+                    className="mr-2"
+                    id="emailSignUp"
+                    onClick={this.handleSubmit}
+                    block
+                  >
+                    Sign Up
+                  </Button>
+                </Card.Body>
+              </Card>
+            </Col>
+            <Col>
+              <Card>
+                <Card.Header as="h3">Sign Up with Google</Card.Header>
+                <Card.Body>
+                  <div>
+                    {authError ? (
+                      <Alert variant="danger">{authError}</Alert>
+                    ) : null}
+                  </div>
+                  <InputGroup className="mb-3">
+                    <InputGroup.Prepend>
+                      <InputGroup.Text>First Name</InputGroup.Text>
+                    </InputGroup.Prepend>
+                    <FormControl
+                      placeholder="First Name"
+                      htmlFor="firstName"
+                      type="text"
+                      id="firstName"
+                      onChange={this.handleChange}
+                    />
+                  </InputGroup>
+                  <InputGroup className="mb-3">
+                    <InputGroup.Prepend>
+                      <InputGroup.Text>Last Name</InputGroup.Text>
+                    </InputGroup.Prepend>
+                    <FormControl
+                      placeholder="Last Name"
+                      htmlFor="lastName"
+                      type="text"
+                      id="lastName"
+                      onChange={this.handleChange}
+                    />
+                  </InputGroup>
+                  <Button
+                    variant="primary"
+                    className="mr-2"
+                    id="googleSignUp"
+                    onClick={this.handleGoogle}
+                    block
+                  >
+                    Sign Up with Google
+                  </Button>
+                </Card.Body>
+              </Card>
+            </Col>
+          </Row>
+        </Container>
       </div>
     );
   }
