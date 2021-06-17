@@ -30,22 +30,22 @@ export default function App() {
         {/* A <Switch> looks through its children <Route>s and renders the first one that matches the current URL. */}
         <Switch>
           <Redirect exact path="/" to="/home"></Redirect>
-          <Route exact path="/home">
+          <Route path="/home">
             <Home />
           </Route>
 
-          <Route exact path="/about">
+          <Route path="/about">
             <About />
           </Route>
 
-          <Route exact path="/details">
+          <Route path="/details">
             <Details/>
           </Route>
 
-          <Route exact path="/sign-up">
+          <Route path="/sign-up">
             <SignUp />
           </Route>
-          <Route exact path="/sign-in">
+          <Route path="/sign-in">
             <SignIn />
           </Route>
           <Route component={NotFound} />

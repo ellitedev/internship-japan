@@ -1,37 +1,35 @@
-import React from 'react';
-import Button from 'react-bootstrap/Button'
-import Helmet from 'react-helmet'
+import React, { Component } from "react";
+import Helmet from "react-helmet";
+import { Route, Redirect } from "react-router-dom";
+import { connect } from "react-redux";
 
-function Home() {
+import SearchBox from "../components/SearchBox";
+import AddBox from "../components/AddBox";
+import ProjectList from "../components/ProjectList";
+
+class Home extends Component {
+  render() {
+    const { projects } = this.props;
     return (
-        <div style={{
-            textAlign: "center"
-        }}>
-            <Helmet>
-                <title>Home</title>
-            </Helmet>
-            <h1>
-                <i>
-                    <b>cock</b>
-                </i>
-            </h1>
-            <h2>Home</h2>
-            <header className="App-header">
-                <p>
-                    Edit
-                    <code>"app.js"</code>
-                    and save to refresh (and cum).
-                </p>
-                    <Button onClick={consoleL} variant="outline-primary">Learn React</Button>
-            </header>
-        </div>
-
-    )
+      <div>
+        <Helmet>
+          <title>Home</title>
+        </Helmet>
+        <ProjectList projects={projects} />
+        <Redirect exact path="/home" to="/home/search"></Redirect>
+        <Route path="/home/add">
+          <AddBox />
+        </Route>
+        <Route path="/home/search">
+          <SearchBox />
+        </Route>
+      </div>
+    );
+  }
 }
-
-function consoleL() {
-    alert("I created a log in the console!")
-    console.log("Logged")
-}
-
-export default Home;
+const mapStateToProps = (state) => {
+  return {
+    projects: state.project.projects,
+  };
+};
+export default connect(mapStateToProps)(Home);
