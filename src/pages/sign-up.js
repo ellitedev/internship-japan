@@ -14,9 +14,7 @@ import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { signUp, signUpGoogle } from "../store/actions/authActions";
 
-
 class SignUp extends Component {
-  
   state = {
     email: "",
     password: "",
