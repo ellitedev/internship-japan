@@ -3,7 +3,8 @@ import Helmet from "react-helmet";
 import { InputGroup, FormControl, Button, Card, Nav } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 import { connect } from "react-redux";
-import { signUp, signUpGoogle } from "../store/actions/authActions";
+
+import { createProject } from "../store/actions/projectActions";
 
 class AddBox extends Component {
   state = {
@@ -19,7 +20,7 @@ class AddBox extends Component {
   };
   handleSubmit = (e) => {
     e.preventDefault();
-    console.log(this.state);
+    this.props.createProject(this.state);
   };
 
   render() {
@@ -109,18 +110,11 @@ class AddBox extends Component {
     );
   }
 }
-const mapStateToProps = (state) => {
-  return {
-    authError: state.auth.authError,
-    auth: state.firebase.auth,
-  };
-};
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    signUp: (newUser) => dispatch(signUp(newUser)),
-    signUpGoogle: (newUser) => dispatch(signUpGoogle(newUser)),
+    createProject: (project) => dispatch(createProject(project)),
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(AddBox);
+export default connect(null, mapDispatchToProps)(AddBox);

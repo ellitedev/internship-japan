@@ -13,8 +13,6 @@ const Navbar1 = (props) => {
   console.log(auth);
   const links = auth.uid ? <SignedInLinks /> : <SignedOutLinks />;
 
-  
-
   return (
     <div>
       <Navbar variant="dark" bg="dark">
@@ -43,7 +41,7 @@ const Navbar1 = (props) => {
         {auth.isLoaded ? (
           <div>{links}</div>
         ) : (
-            <BeatLoader color="white" margin="1vh"/>
+          <BeatLoader color="white" margin="1vh" />
         )}
       </Navbar>
     </div>
@@ -51,7 +49,7 @@ const Navbar1 = (props) => {
 };
 
 const mapStateToProps = (state) => {
-  console.log(state)
+  console.log(state);
   return {
     auth: state.firebase.auth,
   };

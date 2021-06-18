@@ -1,5 +1,10 @@
 import React from "react";
-import {BrowserRouter as Router, Switch, Route, Redirect} from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+} from "react-router-dom";
 import "./index.css";
 
 // Pages
@@ -8,6 +13,7 @@ import About from "./pages/About";
 import SignUp from "./pages/sign-up";
 import SignIn from "./pages/sign-in";
 import Details from "./pages/Details";
+import ProjectDetails from "./pages/ProjectDetails";
 
 //Components
 import Navbar1 from "./components/Navbar1";
@@ -24,7 +30,7 @@ export default function App() {
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
-          marginTop: "1em"
+          marginTop: "1em",
         }}
       >
         {/* A <Switch> looks through its children <Route>s and renders the first one that matches the current URL. */}
@@ -39,7 +45,7 @@ export default function App() {
           </Route>
 
           <Route path="/details">
-            <Details/>
+            <Details />
           </Route>
 
           <Route path="/sign-up">
@@ -48,6 +54,8 @@ export default function App() {
           <Route path="/sign-in">
             <SignIn />
           </Route>
+          <Route path="/project/:id" component={ProjectDetails} />
+
           <Route component={NotFound} />
         </Switch>
       </div>
