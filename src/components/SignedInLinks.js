@@ -20,7 +20,7 @@ const SignedInLinks = (props) => {
 
   return (
     <div>
-        <LinkContainer to="/details">
+        <LinkContainer to={"/userdetails/"+ auth.uid}>
           <Button variant="outline-info" className="mr-2">
             <div>{userName}</div>
           </Button>

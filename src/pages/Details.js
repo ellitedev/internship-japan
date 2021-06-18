@@ -1,27 +1,59 @@
-import React, {Component} from "react";
-import Helmet from "react-helmet";
+import React from "react";
+import { Card, Button, Spinner } from "react-bootstrap";
 import { connect } from "react-redux";
-import { Redirect } from "react-router-dom";
+import { firestoreConnect } from "react-redux-firebase";
+import { compose } from "redux";
 
-class Details extends Component {
-    render() {
-        const { auth } = this.props;
-        if (!auth.uid) return <Redirect to='/sign-in'/>
+const UserDetails = (props) => {
+  const {user} = props;
+  console.log("me",props);
+  if (user) {
     return (
       <div>
-        <Helmet>
-          <title>Details</title>
-        </Helmet>
-        <h1>Details</h1>
+        <Card>
+          <Card.Header>
+            {user.firstName} {user.lastName}
+          </Card.Header>
+          <Card.Body>
+            <iframe
+              width="560"
+              height="315"
+              src={"https://www.youtube.com/embed/"+user.youtubeLink}
+              title="YouTube video player"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+            ></iframe>
+          </Card.Body>
+        </Card>
       </div>
     );
+  } else {
+    return (
+      <Button variant="primary" disabled>
+        <Spinner
+          as="span"
+          animation="grow"
+          size="sm"
+          role="status"
+          aria-hidden="true"
+        />
+        Loading...
+      </Button>
+    );
   }
-}
-
-const mapStateToProps = (state) => {
+};
+const mapStateToProps = (state, ownProps) => {
+  const auth = state.firebase.auth;
+  const users = state.firestore.data.users;
+  const user = users ? users[auth.uid] : null;
   return {
     auth: state.firebase.auth,
+    user: user,
   };
 };
 
-export default connect(mapStateToProps)(Details);
+export default compose(
+  connect(mapStateToProps),
+  firestoreConnect([{ collection: "users" }])
+)(UserDetails);

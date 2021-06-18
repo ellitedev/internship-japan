@@ -7,12 +7,18 @@
     "@testing-library/jest-dom": "^5.12.0",
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
+    "algoliasearch": "^4.9.3",
     "bootstrap": "^4.6.0",
+    "faker": "^5.5.3",
     "firebase": "^8.6.3",
+    "instantsearch.css": "^7.4.5",
+    "moment": "^2.29.1",
     "react": "^17.0.2",
     "react-bootstrap": "^1.6.0",
     "react-dom": "^17.0.2",
     "react-helmet": "^6.1.0",
+    "react-instantsearch": "^6.11.1",
+    "react-instantsearch-dom": "^6.11.1",
     "react-redux": "^7.2.4",
     "react-redux-firebase": "^3.10.0",
     "react-router-bootstrap": "^0.25.0",
@@ -46,5 +52,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "css-loader": "^0.28.7",
+    "style-loader": "^0.19.0"
   }
 }

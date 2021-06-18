@@ -1,37 +1,27 @@
-import React from 'react';
-import Button from 'react-bootstrap/Button'
-import Helmet from 'react-helmet'
+import React, { Component } from "react";
+import Helmet from "react-helmet";
+import { Route, Redirect } from "react-router-dom";
 
-function Home() {
+import SearchingBox from "../components/SearchBox";
+import AddBox from "../components/AddBox";
+
+class Home extends Component {
+  render() {
     return (
-        <div style={{
-            textAlign: "center"
-        }}>
-            <Helmet>
-                <title>Home</title>
-            </Helmet>
-            <h1>
-                <i>
-                    <b>cock</b>
-                </i>
-            </h1>
-            <h2>Home</h2>
-            <header className="App-header">
-                <p>
-                    Edit
-                    <code>"app.js"</code>
-                    and save to refresh (and cum).
-                </p>
-                    <Button onClick={consoleL} variant="outline-primary">Learn React</Button>
-            </header>
-        </div>
-
-    )
+      <div>
+        <Helmet>
+          <title>Home</title>
+        </Helmet>
+        <Redirect exact path="/home" to="/home/search"></Redirect>
+        <Route path="/home/add">
+          <AddBox />
+        </Route>
+        <Route path="/home/search">
+          <SearchingBox />
+        </Route>
+        {/* <ProjectList projects={projects} /> */}
+      </div>
+    );
+  }
 }
-
-function consoleL() {
-    alert("I created a log in the console!")
-    console.log("Logged")
-}
-
 export default Home;

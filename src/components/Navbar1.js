@@ -13,13 +13,11 @@ const Navbar1 = (props) => {
   console.log(auth);
   const links = auth.uid ? <SignedInLinks /> : <SignedOutLinks />;
 
-  
-
   return (
     <div>
       <Navbar variant="dark" bg="dark">
         <Nav className="mr-auto">
-          <LinkContainer to="/home">
+          <LinkContainer to="/home/search">
             <Nav.Link>
               <img
                 src={Logo}
@@ -36,14 +34,14 @@ const Navbar1 = (props) => {
             <Nav.Link>About</Nav.Link>
           </LinkContainer>
 
-          <LinkContainer to="/details">
+          <LinkContainer to={"/userdetails/"+ auth.uid}>
             <Nav.Link>Details</Nav.Link>
           </LinkContainer>
         </Nav>
         {auth.isLoaded ? (
           <div>{links}</div>
         ) : (
-            <BeatLoader color="white" margin="1vh"/>
+          <BeatLoader color="white" margin="1vh" />
         )}
       </Navbar>
     </div>
@@ -51,7 +49,7 @@ const Navbar1 = (props) => {
 };
 
 const mapStateToProps = (state) => {
-  console.log(state)
+  console.log(state);
   return {
     auth: state.firebase.auth,
   };
