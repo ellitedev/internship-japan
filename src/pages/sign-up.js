@@ -14,12 +14,15 @@ import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { signUp, signUpGoogle } from "../store/actions/authActions";
 
+
 class SignUp extends Component {
+  
   state = {
     email: "",
     password: "",
     firstName: "",
     lastName: "",
+    youtubeLink: "",
   };
 
   handleChange = (e) => {
@@ -38,7 +41,7 @@ class SignUp extends Component {
   };
   render() {
     const { auth, authError } = this.props;
-    if (auth.uid) return <Redirect to="/home" />;
+    if (auth.uid) return <Redirect to="/home/search" />;
     return (
       <div>
         <Helmet>
@@ -104,6 +107,19 @@ class SignUp extends Component {
                       aria-describedby="inputGroup-sizing-default"
                     />
                   </InputGroup>
+                  <InputGroup className="mb-3">
+                    <InputGroup.Prepend>
+                      <InputGroup.Text id="inputGroup-sizing-default">
+                        YouTube Video ID
+                      </InputGroup.Text>
+                    </InputGroup.Prepend>
+                    <FormControl
+                      type="link"
+                      id="youtubeLink"
+                      onChange={this.handleChange}
+                      placeholder="_Y4m2hOP_K8"
+                    />
+                  </InputGroup>
                   <Button
                     variant="primary"
                     className="mr-2"
@@ -147,6 +163,19 @@ class SignUp extends Component {
                       type="text"
                       id="lastName"
                       onChange={this.handleChange}
+                    />
+                  </InputGroup>
+                  <InputGroup className="mb-3">
+                    <InputGroup.Prepend>
+                      <InputGroup.Text id="inputGroup-sizing-default">
+                        YouTube Video ID
+                      </InputGroup.Text>
+                    </InputGroup.Prepend>
+                    <FormControl
+                      type="link"
+                      id="youtubeLink"
+                      onChange={this.handleChange}
+                      placeholder="_Y4m2hOP_K8"
                     />
                   </InputGroup>
                   <Button

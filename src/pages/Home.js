@@ -1,17 +1,12 @@
 import React, { Component } from "react";
 import Helmet from "react-helmet";
 import { Route, Redirect } from "react-router-dom";
-import { connect } from "react-redux";
-import { firestoreConnect } from "react-redux-firebase";
-import { compose } from "redux";
 
-import SearchBox from "../components/SearchBox";
+import SearchingBox from "../components/SearchBox";
 import AddBox from "../components/AddBox";
-import ProjectList from "../components/ProjectList";
 
 class Home extends Component {
   render() {
-    const { projects } = this.props;
     return (
       <div>
         <Helmet>
@@ -22,23 +17,11 @@ class Home extends Component {
           <AddBox />
         </Route>
         <Route path="/home/search">
-          <SearchBox />
+          <SearchingBox />
         </Route>
-        <ProjectList projects={projects} />
+        {/* <ProjectList projects={projects} /> */}
       </div>
     );
   }
 }
-const mapStateToProps = (state) => {
-  console.log(state);
-  return {
-    projects: state.firestore.ordered.internships,
-  };
-};
-
-export default compose(
-  connect(mapStateToProps),
-  firestoreConnect([
-    { collection: "internships", orderBy: ["createdAt", "desc"] },
-  ])
-)(Home);
+export default Home;

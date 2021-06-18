@@ -10,29 +10,21 @@ const SignedInLinks = (props) => {
   const { auth, profile } = props;
 
   function Fname() {
-    return <div>{profile.firstName}</div>;
+  return(<div>{profile.firstName}</div>)
   }
   function Dname() {
-    return <div>{auth.displayName}</div>;
+    return(<div>{auth.displayName}</div>)
   }
 
-  const userName = profile.firstName ? (
-    <div>
-      <Fname />
-    </div>
-  ) : (
-    <div>
-      <Dname />
-    </div>
-  );
+  const userName = profile.firstName ? <div><Fname/></div> : <div><Dname/></div>;
 
   return (
     <div>
-      <LinkContainer to="/details">
-        <Button variant="outline-info" className="mr-2">
-          <div>{userName}</div>
-        </Button>
-      </LinkContainer>
+        <LinkContainer to={"/userdetails/"+ auth.uid}>
+          <Button variant="outline-info" className="mr-2">
+            <div>{userName}</div>
+          </Button>
+        </LinkContainer>
       <Button onClick={props.signOut} variant="outline-danger" className="mr-2">
         Log Out
       </Button>
@@ -44,9 +36,9 @@ const mapStateToProps = (state) => {
   console.log(state);
   return {
     auth: state.firebase.auth,
-    profile: state.firebase.profile,
-  };
-};
+    profile: state.firebase.profile
+  }
+}
 
 const mapDispatchToProps = (dispatch) => {
   return {

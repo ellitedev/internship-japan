@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Helmet from "react-helmet";
+import { Redirect } from "react-router-dom";
 import { InputGroup, FormControl, Button, Card, Nav } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 import { connect } from "react-redux";
@@ -24,12 +25,14 @@ class AddBox extends Component {
   };
 
   render() {
+    const { auth } = this.props;
+    if (!auth.uid) return <Redirect to="/sign-in" />;
     return (
       <div>
         <Helmet>
           <title>Add Internship</title>
         </Helmet>
-        <Card>
+        <Card style={{ width: "70vw" }}>
           <Card.Header>
             <Nav variant="pills" defaultActiveKey="link">
               <Nav.Item>
@@ -110,6 +113,11 @@ class AddBox extends Component {
     );
   }
 }
+const mapStateToProps = (state) => {
+  return {
+    auth: state.firebase.auth,
+  };
+};
 
 const mapDispatchToProps = (dispatch) => {
   return {
@@ -117,4 +125,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(null, mapDispatchToProps)(AddBox);
+export default connect(mapStateToProps, mapDispatchToProps)(AddBox);

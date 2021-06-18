@@ -17,7 +17,7 @@ const Navbar1 = (props) => {
     <div>
       <Navbar variant="dark" bg="dark">
         <Nav className="mr-auto">
-          <LinkContainer to="/home">
+          <LinkContainer to="/home/search">
             <Nav.Link>
               <img
                 src={Logo}
@@ -34,7 +34,7 @@ const Navbar1 = (props) => {
             <Nav.Link>About</Nav.Link>
           </LinkContainer>
 
-          <LinkContainer to="/details">
+          <LinkContainer to={"/userdetails/"+ auth.uid}>
             <Nav.Link>Details</Nav.Link>
           </LinkContainer>
         </Nav>

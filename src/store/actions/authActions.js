@@ -40,6 +40,7 @@ export const signUp = (newUser) => {
           .set({
             firstName: newUser.firstName,
             lastName: newUser.lastName,
+            youtubeLink: newUser.youtubeLink,
           })
           .then(() => {
             dispatch({ type: "SIGNUP_SUCCESS" });
@@ -55,33 +56,34 @@ export const signUpGoogle = (newUser) => {
   return (dispatch, getState, { getFirebase, getFirestore }) => {
     const firebase = getFirebase();
     const firestore = getFirestore();
-    const auth = firebase.auth()
+    const auth = firebase.auth();
     const provider = new firebase.auth.GoogleAuthProvider();
-      auth.signInWithPopup(provider)
-      .then((resp) => {
-        return firestore
-          .collection("users")
-          .doc(resp.user.uid)
-          .set({
-            firstName: newUser.firstName,
-            lastName: newUser.lastName,
-          })
-          .then(() => {
-            dispatch({ type: "SIGNUP_SUCCESS" });
-          })
-          .catch((err) => {
-            dispatch({ type: "SIGNUP_ERROR", err });
-          });
-      });
+    auth.signInWithPopup(provider).then((resp) => {
+      return firestore
+        .collection("users")
+        .doc(resp.user.uid)
+        .set({
+          firstName: newUser.firstName,
+          lastName: newUser.lastName,
+          youtubeLink: newUser.youtubeLink,
+        })
+        .then(() => {
+          dispatch({ type: "SIGNUP_SUCCESS" });
+        })
+        .catch((err) => {
+          dispatch({ type: "SIGNUP_ERROR", err });
+        });
+    });
   };
 };
 
 export const signInGoogle = () => {
   return (dispatch, getState, { getFirebase }) => {
     const firebase = getFirebase();
-    const auth = firebase.auth()
+    const auth = firebase.auth();
     const provider = new firebase.auth.GoogleAuthProvider();
-      auth.signInWithPopup(provider)
+    auth
+      .signInWithPopup(provider)
       .then(() => {
         dispatch({ type: "LOGIN_SUCCESS" });
       })
@@ -90,4 +92,3 @@ export const signInGoogle = () => {
       });
   };
 };
-

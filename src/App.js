@@ -12,7 +12,7 @@ import Home from "./pages/Home";
 import About from "./pages/About";
 import SignUp from "./pages/sign-up";
 import SignIn from "./pages/sign-in";
-import Details from "./pages/Details";
+import UserDetails from "./pages/Details";
 import ProjectDetails from "./pages/ProjectDetails";
 
 //Components
@@ -44,8 +44,8 @@ export default function App() {
             <About />
           </Route>
 
-          <Route path="/details">
-            <Details />
+          <Route path="/userdetails/:id">
+            <UserDetails />
           </Route>
 
           <Route path="/sign-up">
