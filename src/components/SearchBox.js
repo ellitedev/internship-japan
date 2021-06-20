@@ -14,7 +14,7 @@ const searchClient = algoliasearch(
 
 const Hit = ({ hit }) => {
   return (
-    <Card style={{ width: "100%" }}>
+    <Card style={{ width: "70vw" }}>
       <Card.Header as="h4">{hit.title}</Card.Header>
       <Card.Body>
         <Card.Title>{hit.city}</Card.Title>
@@ -40,7 +40,7 @@ class SearchingBox extends Component {
   render() {
     const { auth } = this.props;
     return (
-      <div>
+      <div style={{ width: "70vw" }}>
         <InstantSearch searchClient={searchClient} indexName="Internships">
           <Card style={{ width: "70vw" }}>
             <Card.Header>
