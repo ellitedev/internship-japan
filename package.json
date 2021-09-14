@@ -14,15 +14,15 @@
     "instantsearch.css": "^7.4.5",
     "moment": "^2.29.1",
     "react": "^17.0.2",
-    "react-bootstrap": "^1.6.0",
+    "react-bootstrap": "^1.6.3",
     "react-dom": "^17.0.2",
     "react-helmet": "^6.1.0",
     "react-instantsearch": "^6.11.1",
     "react-instantsearch-dom": "^6.11.1",
-    "react-redux": "^7.2.4",
+    "react-redux": "^7.2.5",
     "react-redux-firebase": "^3.10.0",
     "react-router-bootstrap": "^0.25.0",
-    "react-router-dom": "^5.2.0",
+    "react-router-dom": "^5.3.0",
     "react-scripts": "^1.1.5",
     "react-spinners": "^0.11.0",
     "redux": "^4.1.0",
@@ -54,7 +54,7 @@
     ]
   },
   "devDependencies": {
-    "css-loader": "^0.28.7",
-    "style-loader": "^0.19.0"
+    "css-loader": "^0.28.11",
+    "style-loader": "^0.19.1"
   }
 }
